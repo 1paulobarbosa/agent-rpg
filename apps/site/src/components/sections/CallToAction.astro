@@ -1,0 +1,54 @@
+---
+import { SITE } from '../../data/site'
+import CommandBox from '../ui/CommandBox.astro'
+import PixelSprite from '../ui/PixelSprite.astro'
+---
+
+<section class="cta" aria-labelledby="cta-title">
+  <div class="container cta-inner pixel-panel">
+    <div class="sprites" aria-hidden="true">
+      <PixelSprite sprite="knight" scale={5} />
+      <PixelSprite sprite="chest" scale={5} />
+    </div>
+    <h2 id="cta-title">Ready, player one?</h2>
+    <p>Open a terminal, run this, then go back to coding. Your party is waiting at the Tavern.</p>
+    <CommandBox command={SITE.installCommand} id="cta-cmd" />
+    <p class="small">
+      Free and open source. <a href={SITE.repoUrl} rel="noopener">Star it on GitHub</a> or send a PR with a
+      new monster.
+    </p>
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding-block: var(--space-5) 0;
+  }
+
+  .cta-inner {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .sprites {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-4);
+  }
+
+  h2 {
+    font-size: clamp(0.9rem, 3.2vw, 1.4rem);
+  }
+
+  p {
+    color: var(--ink-soft);
+    max-width: 32rem;
+  }
+
+  .small a {
+    color: var(--accent);
+  }
+</style>

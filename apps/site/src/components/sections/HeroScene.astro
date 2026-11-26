@@ -1,0 +1,203 @@
+---
+import PixelSprite from '../ui/PixelSprite.astro'
+
+interface LogLine {
+  tool: string
+  move: string
+}
+
+interface Props {
+  log: readonly LogLine[]
+}
+
+const { log } = Astro.props
+---
+
+<figure class="scene pixel-panel" aria-label="A knight and a mage fighting a slime while agent tool calls scroll by">
+  <div class="sky" aria-hidden="true">
+    <span class="orb"></span>
+    <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span>
+    <span class="cloud c1"></span><span class="cloud c2"></span>
+    <span class="castle"></span>
+  </div>
+
+  <div class="ground" aria-hidden="true"></div>
+
+  <div class="actors" aria-hidden="true">
+    <PixelSprite sprite="mage" class="actor mage" />
+    <PixelSprite sprite="knight" class="actor knight" />
+    <span class="bolt"></span>
+    <span class="damage">-24</span>
+    <PixelSprite sprite="slime" class="actor slime" />
+    <PixelSprite sprite="chest" class="actor chest" />
+    <PixelSprite sprite="coin" class="actor coin" />
+  </div>
+
+  <figcaption class="log">
+    {
+      log.map((line) => (
+        <p>
+          <span class="tool">{line.tool}</span> <span class="arrow">→</span> <span class="move">{line.move}</span>
+        </p>
+      ))
+    }
+  </figcaption>
+</figure>
+
+<style>
+  .scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: linear-gradient(var(--bg-sky-top), var(--bg-sky-bottom));
+  }
+
+  .sky,
+  .actors {
+    position: absolute;
+    inset: 0;
+  }
+
+  .orb {
+    position: absolute;
+    top: 10%;
+    right: 9%;
+    width: 7%;
+    aspect-ratio: 1;
+    background: var(--px-y);
+    box-shadow: 0 0 0 4px var(--px-Y);
+  }
+
+  .star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--star);
+    animation: twinkle 2.4s steps(2) infinite;
+  }
+
+  .s1 { top: 12%; left: 14%; }
+  .s2 { top: 22%; left: 42%; animation-delay: 0.8s; }
+  .s3 { top: 8%; left: 66%; animation-delay: 1.6s; }
+
+  .cloud {
+    position: absolute;
+    height: 6%;
+    background: var(--cloud);
+    box-shadow: 8px -8px 0 0 var(--cloud);
+    animation: drift 18s steps(36) infinite alternate;
+  }
+
+  .c1 { top: 18%; left: 8%; width: 14%; }
+  .c2 { top: 30%; left: 55%; width: 10%; animation-duration: 24s; }
+
+  .castle {
+    position: absolute;
+    bottom: 30%;
+    right: 6%;
+    width: 18%;
+    height: 26%;
+    background: var(--px-M);
+    clip-path: polygon(0 20%, 12% 20%, 12% 0, 24% 0, 24% 20%, 38% 20%, 38% 0, 62% 0, 62% 20%, 76% 20%, 76% 0, 88% 0, 88% 20%, 100% 20%, 100% 100%, 0 100%);
+    opacity: 0.6;
+  }
+
+  .ground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 30%;
+    background:
+      repeating-linear-gradient(90deg, var(--grass) 0 16px, var(--grass-dark) 16px 20px) top / 100% 10px no-repeat,
+      var(--dirt);
+  }
+
+  :global(.actor) {
+    position: absolute;
+    height: auto;
+  }
+
+  :global(.knight) {
+    left: 29%;
+    bottom: 26%;
+    width: 17%;
+    animation: swing 0.9s steps(2) infinite;
+  }
+
+  :global(.mage) {
+    left: 9%;
+    bottom: 27%;
+    width: 15%;
+    animation: bob 1.2s steps(2) infinite;
+  }
+
+  :global(.slime) {
+    left: 55%;
+    bottom: 26%;
+    width: 17%;
+    transform-origin: bottom center;
+    animation: squish 0.9s steps(2) infinite;
+  }
+
+  :global(.chest) {
+    left: 78%;
+    bottom: 22%;
+    width: 11%;
+  }
+
+  :global(.coin) {
+    left: 81%;
+    bottom: 44%;
+    width: 5%;
+    animation: bob 0.8s steps(2) infinite;
+  }
+
+  .bolt {
+    position: absolute;
+    left: 23%;
+    bottom: 42%;
+    width: 3%;
+    aspect-ratio: 1;
+    background: var(--px-p);
+    box-shadow: 0 0 0 3px var(--px-c);
+    animation: fly 1.8s steps(12) infinite;
+  }
+
+  .damage {
+    position: absolute;
+    left: 60%;
+    bottom: 60%;
+    font-family: var(--font-pixel);
+    font-size: clamp(0.6rem, 2.4vw, 1.1rem);
+    color: var(--px-r);
+    text-shadow: 2px 2px 0 var(--px-k);
+    animation: float-up 0.9s steps(6) infinite;
+  }
+
+  .log {
+    position: absolute;
+    left: 3%;
+    top: 5%;
+    max-width: 60%;
+    padding: 0.4em 0.7em;
+    background: color-mix(in srgb, var(--px-k) 86%, transparent);
+    color: var(--px-w);
+    border: 3px solid var(--px-k);
+    font-size: clamp(0.85rem, 2.6vw, 1.25rem);
+    line-height: 1.1;
+  }
+
+  .tool { color: var(--px-c); }
+  .arrow { color: var(--px-m); }
+  .move { color: var(--px-y); }
+
+  @keyframes bob { 50% { translate: 0 -6%; } }
+  @keyframes swing { 50% { translate: 8% 0; rotate: 4deg; } }
+  @keyframes squish { 50% { scale: 1.08 0.9; } }
+  @keyframes twinkle { 50% { opacity: 0.2; } }
+  @keyframes drift { to { translate: 40% 0; } }
+  @keyframes fly { from { translate: 0 0; opacity: 1; } 80% { opacity: 1; } to { translate: 1000% 30%; opacity: 0; } }
+  @keyframes float-up { from { translate: 0 0; opacity: 1; } to { translate: 0 -120%; opacity: 0; } }
+</style>

@@ -1,0 +1,51 @@
+---
+import { SITE } from '../../data/site'
+import PixelSprite from '../ui/PixelSprite.astro'
+---
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <p class="made">
+      <PixelSprite sprite="heart" scale={3} />
+      <span>Open source under the {SITE.license} license. Made for fun.</span>
+    </p>
+    <ul class="links">
+      <li><a href={SITE.repoUrl} rel="noopener">GitHub</a></li>
+      <li><a href={SITE.npmUrl} rel="noopener">npm</a></li>
+      <li><a href={`${SITE.repoUrl}/blob/main/LICENSE`} rel="noopener">License</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: var(--border-w) solid var(--border);
+    background: var(--surface-alt);
+    padding-block: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .made {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--ink-soft);
+  }
+
+  .links {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .links a {
+    text-underline-offset: 4px;
+  }
+</style>

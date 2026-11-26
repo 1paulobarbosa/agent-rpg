@@ -1,0 +1,64 @@
+---
+import type { Feature } from '../../data/features'
+import PixelSprite from '../ui/PixelSprite.astro'
+
+interface Props {
+  features: readonly Feature[]
+}
+
+const { features } = Astro.props
+---
+
+<section class="features" aria-labelledby="features-title">
+  <div class="container">
+    <h2 id="features-title" class="section-title">How your work becomes a game</h2>
+    <ul class="grid">
+      {
+        features.map((feature) => (
+          <li class="card pixel-panel">
+            <PixelSprite sprite={feature.sprite} scale={5} />
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding-block: var(--space-5);
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 48rem) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .card {
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+    padding: var(--space-4);
+    transition: transform 0.1s steps(2);
+  }
+
+  .card:hover {
+    transform: translate(-2px, -2px);
+  }
+
+  h3 {
+    font-size: var(--text-sm);
+  }
+
+  p {
+    color: var(--ink-soft);
+  }
+</style>

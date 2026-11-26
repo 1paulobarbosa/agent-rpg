@@ -1,0 +1,53 @@
+---
+import '@fontsource/press-start-2p/400.css'
+import '@fontsource/vt323/400.css'
+import '../styles/tokens.css'
+import '../styles/reset.css'
+import '../styles/base.css'
+import Footer from '../components/layout/Footer.astro'
+import Header from '../components/layout/Header.astro'
+import Head from '../components/seo/Head.astro'
+import { SITE } from '../data/site'
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string
+}
+
+const { title = SITE.title, description = SITE.description, image } = Astro.props
+const canonical = new URL(Astro.url.pathname, SITE.url)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={title} description={description} canonical={canonical} image={image} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: 16px;
+    top: -4rem;
+    z-index: 10;
+    padding: var(--space-2) var(--space-3);
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--font-pixel);
+    font-size: var(--text-xs);
+  }
+
+  .skip-link:focus {
+    top: var(--space-2);
+  }
+</style>

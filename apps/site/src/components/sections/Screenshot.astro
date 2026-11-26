@@ -1,0 +1,44 @@
+---
+import { SCREENSHOT } from '../../data/screenshot'
+---
+
+<section class="screenshot" aria-labelledby="screenshot-title">
+  <div class="container">
+    <h2 id="screenshot-title" class="section-title">See it in action</h2>
+    <figure class="frame pixel-panel">
+      <img
+        src={SCREENSHOT.src}
+        width={SCREENSHOT.width}
+        height={SCREENSHOT.height}
+        alt={SCREENSHOT.alt}
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>{SCREENSHOT.caption}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .screenshot {
+    padding-block: var(--space-5);
+  }
+
+  .frame {
+    margin: 0;
+    padding: var(--space-2);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+  }
+
+  figcaption {
+    padding: var(--space-3) var(--space-2) var(--space-1);
+    color: var(--ink-soft);
+    text-align: center;
+  }
+</style>

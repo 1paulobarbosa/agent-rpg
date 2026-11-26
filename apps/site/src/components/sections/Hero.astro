@@ -1,0 +1,72 @@
+---
+import { SITE } from '../../data/site'
+import CommandBox from '../ui/CommandBox.astro'
+import { SCENE_LOG } from '../../data/scene'
+import HeroScene from './HeroScene.astro'
+---
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Open source · 100% local</p>
+      <h1>{SITE.tagline}</h1>
+      <p class="lede">
+        Every tool call from Claude Code or Antigravity becomes a hit, a spell or a boss fight on a
+        tiny pixel-art map. Leave it open in a tab and watch your agents work.
+      </p>
+      <CommandBox command={SITE.installCommand} id="hero-cmd" />
+      <p class="alt">or <code>{SITE.altCommand}</code> · needs Node 20+</p>
+    </div>
+    <HeroScene log={SCENE_LOG} />
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-4) var(--space-5);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  @media (min-width: 56rem) {
+    .hero-grid {
+      grid-template-columns: 1fr 1.1fr;
+    }
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+  }
+
+  .eyebrow {
+    font-family: var(--font-pixel);
+    font-size: var(--text-xs);
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  h1 {
+    font-size: var(--text-title);
+  }
+
+  .lede {
+    color: var(--ink-soft);
+    font-size: var(--text-lg);
+    max-width: 34rem;
+  }
+
+  .alt {
+    color: var(--ink-soft);
+  }
+
+  .alt code {
+    font-family: inherit;
+    color: var(--ink);
+  }
+</style>

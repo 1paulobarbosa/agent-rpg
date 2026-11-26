@@ -1,0 +1,106 @@
+---
+import type { Step } from '../../data/steps'
+
+interface Props {
+  steps: readonly Step[]
+  bosses: readonly string[]
+  bossesTitle: string
+}
+
+const { steps, bosses, bossesTitle } = Astro.props
+---
+
+<section class="how" aria-labelledby="how-title">
+  <div class="container">
+    <h2 id="how-title" class="section-title">Three steps to adventure</h2>
+    <ol class="steps">
+      {
+        steps.map((step) => (
+          <li class="step">
+            <span class="badge" aria-hidden="true">{step.label}</span>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="bosses pixel-panel">
+      <p class="bosses-title">{bossesTitle}</p>
+      <ul>
+        {bosses.map((boss, i) => <li><span class="act">Act {i + 1}</span> {boss}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding-block: var(--space-5);
+  }
+
+  .steps {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (min-width: 48rem) {
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .step {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .badge {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--font-pixel);
+    font-size: var(--text-sm);
+    border: 3px solid var(--border);
+    box-shadow: 3px 3px 0 var(--shadow);
+  }
+
+  h3 {
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-2);
+  }
+
+  p {
+    color: var(--ink-soft);
+  }
+
+  .bosses {
+    padding: var(--space-4);
+    background: var(--surface-alt);
+  }
+
+  .bosses-title {
+    font-family: var(--font-pixel);
+    font-size: var(--text-xs);
+    margin-bottom: var(--space-3);
+    color: var(--gold);
+  }
+
+  .bosses ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .act {
+    color: var(--accent);
+  }
+</style>

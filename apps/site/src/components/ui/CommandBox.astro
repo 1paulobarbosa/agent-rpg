@@ -1,0 +1,67 @@
+---
+interface Props {
+  command: string
+  id: string
+}
+
+const { command, id } = Astro.props
+---
+
+<div class="command-box pixel-panel">
+  <span class="prompt" aria-hidden="true">$</span>
+  <code class="command">{command}</code>
+  <button type="button" class="copy-btn" data-copy={command} aria-controls={`${id}-status`} hidden>
+    Copy
+  </button>
+  <span id={`${id}-status`} class="visually-hidden" role="status"></span>
+</div>
+
+<script>
+  import '../../scripts/copy-command'
+</script>
+
+<style>
+  .command-box {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+    background: var(--px-k);
+    color: var(--px-w);
+    max-width: 30rem;
+    width: 100%;
+  }
+
+  .prompt {
+    color: var(--px-g);
+    font-size: var(--text-lg);
+  }
+
+  .command {
+    flex: 1;
+    font-family: var(--font-pixel);
+    font-size: clamp(0.7rem, 2.6vw, 0.95rem);
+    user-select: all;
+    overflow-wrap: anywhere;
+  }
+
+  .copy-btn {
+    font-family: var(--font-pixel);
+    font-size: var(--text-xs);
+    padding: var(--space-2) var(--space-3);
+    background: var(--px-y);
+    color: var(--px-k);
+    border: 3px solid var(--px-w);
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--px-Y);
+  }
+
+  .copy-btn:hover {
+    transform: translate(-1px, -1px);
+  }
+
+  .copy-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+</style>

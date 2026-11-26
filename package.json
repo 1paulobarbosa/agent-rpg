@@ -1,0 +1,26 @@
+{
+  "name": "agent-rpg-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @agent-rpg/game-core build && pnpm --parallel --filter @agent-rpg/watcher --filter @agent-rpg/web dev",
+    "typecheck": "pnpm --filter @agent-rpg/game-core build && pnpm -r typecheck",
+    "lint": "eslint .",
+    "test": "pnpm -r test",
+    "build": "pnpm --filter @agent-rpg/game-core build && pnpm --filter @agent-rpg/watcher build && pnpm --filter @agent-rpg/web build && pnpm --filter agent-rpg build && pnpm --filter @agent-rpg/site build",
+    "smoke": "pnpm --filter agent-rpg smoke",
+    "start": "node apps/cli/dist/cli.js",
+    "dev:site": "pnpm --filter @agent-rpg/site dev"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "@types/node": "^22.18.0",
+    "eslint": "^9.35.0",
+    "globals": "^16.4.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.0",
+    "vitest": "^3.2.4"
+  }
+}

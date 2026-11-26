@@ -1,0 +1,38 @@
+---
+import { SPRITES, type SpriteId } from '../../data/sprites'
+import { spriteSize, spriteToRects } from '../../utils/sprite-rects'
+
+interface Props {
+  sprite: SpriteId
+  /** Screen pixels per sprite pixel. */
+  scale?: number
+  /** Accessible name. Omit for decorative sprites. */
+  label?: string
+  class?: string
+}
+
+const { sprite, scale = 4, label, class: className } = Astro.props
+const rows = SPRITES[sprite]
+const { width, height } = spriteSize(rows)
+const rects = spriteToRects(rows)
+---
+
+<svg
+  class:list={['pixel-sprite', className]}
+  viewBox={`0 0 ${width} ${height}`}
+  width={width * scale}
+  height={height * scale}
+  shape-rendering="crispEdges"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>
+  {rects.map((r) => <rect x={r.x} y={r.y} width={r.width} height="1" fill={`var(--px-${r.color})`} />)}
+</svg>
+
+<style>
+  .pixel-sprite {
+    image-rendering: pixelated;
+    flex-shrink: 0;
+  }
+</style>

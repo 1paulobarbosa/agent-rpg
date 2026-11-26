@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agent-rpg.paulobarbosa.dev/sitemap-index.xml

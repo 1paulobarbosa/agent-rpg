@@ -1,0 +1,54 @@
+---
+import { SITE } from '../../data/site'
+import PixelSprite from '../ui/PixelSprite.astro'
+---
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="logo" href="/" aria-label={`${SITE.name} home`}>
+      <PixelSprite sprite="sword" scale={2} />
+      <span>{SITE.name}</span>
+    </a>
+    <nav aria-label="Main">
+      <a class="nav-link" href={SITE.repoUrl} rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 2;
+    padding-block: var(--space-3);
+  }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-pixel);
+    font-size: var(--text-sm);
+    text-decoration: none;
+  }
+
+  .nav-link {
+    font-family: var(--font-pixel);
+    font-size: var(--text-xs);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    border: 3px solid var(--border);
+    background: var(--surface);
+    box-shadow: 3px 3px 0 var(--shadow);
+  }
+
+  .nav-link:hover {
+    background: var(--surface-alt);
+  }
+</style>

@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.vite/
+.DS_Store
+.env
+.env.local
+*.log
+apps/cli/README.md
+apps/cli/LICENSE
+.astro/
+.vercel/

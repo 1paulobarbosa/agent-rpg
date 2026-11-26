@@ -1,0 +1,104 @@
+/* Design tokens. Sprite colours match the game palette (apps/web/src/game/palette.ts). */
+:root {
+  --px-k: #10141f;
+  --px-w: #f8fafc;
+  --px-s: #f4c7a1;
+  --px-r: #ef4444;
+  --px-o: #fb923c;
+  --px-y: #facc15;
+  --px-Y: #ca8a04;
+  --px-g: #22c55e;
+  --px-G: #15803d;
+  --px-e: #10b981;
+  --px-c: #38bdf8;
+  --px-b: #3b82f6;
+  --px-B: #1d4ed8;
+  --px-p: #a855f7;
+  --px-P: #6b21a8;
+  --px-m: #94a3b8;
+  --px-M: #475569;
+  --px-t: #92400e;
+  --px-T: #5c2808;
+
+  /* Light theme: daytime village. */
+  --bg: #e9f3ff;
+  --bg-sky-top: #9fd3ff;
+  --bg-sky-bottom: #e9f3ff;
+  --surface: #ffffff;
+  --surface-alt: #f4ecdf;
+  --ink: #1a1f33;
+  --ink-soft: #4a5170;
+  --border: #1a1f33;
+  --accent: #7c3aed;
+  --accent-ink: #ffffff;
+  --gold: #b7791f;
+  --grass: #4ade80;
+  --grass-dark: #15803d;
+  --dirt: #a16207;
+  --star: transparent;
+  --cloud: #ffffff;
+  --shadow: #1a1f33;
+
+  --font-pixel: 'Press Start 2P', ui-monospace, monospace;
+  --font-body: 'VT323', ui-monospace, monospace;
+
+  --text-xs: 0.625rem;
+  --text-sm: 0.75rem;
+  --text-md: 1.375rem;
+  --text-lg: 1.625rem;
+  --text-title: clamp(1.25rem, 4.5vw, 2.25rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  --border-w: 4px;
+  --shadow-offset: 4px;
+  --max-width: 64rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    /* Dark theme: night over the tavern. */
+    --bg: #0f1324;
+    --bg-sky-top: #070a16;
+    --bg-sky-bottom: #1c2140;
+    --surface: #1b2038;
+    --surface-alt: #232a4a;
+    --ink: #f1f5ff;
+    --ink-soft: #b4bddc;
+    --border: #050712;
+    --accent: #a855f7;
+    --accent-ink: #ffffff;
+    --gold: #facc15;
+    --grass: #166534;
+    --grass-dark: #0b3d20;
+    --dirt: #5c2808;
+    --star: #f8fafc;
+    --cloud: transparent;
+    --shadow: #050712;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0f1324;
+  --bg-sky-top: #070a16;
+  --bg-sky-bottom: #1c2140;
+  --surface: #1b2038;
+  --surface-alt: #232a4a;
+  --ink: #f1f5ff;
+  --ink-soft: #b4bddc;
+  --border: #050712;
+  --accent: #a855f7;
+  --accent-ink: #ffffff;
+  --gold: #facc15;
+  --grass: #166534;
+  --grass-dark: #0b3d20;
+  --dirt: #5c2808;
+  --star: #f8fafc;
+  --cloud: transparent;
+  --shadow: #050712;
+}

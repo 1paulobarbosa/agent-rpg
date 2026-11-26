@@ -1,0 +1,47 @@
+{
+  "name": "agent-rpg",
+  "version": "0.1.0",
+  "description": "Watch your AI coding agents (Claude Code, Antigravity) play a pixel-art RPG, live and 100% local.",
+  "homepage": "https://agent-rpg.paulobarbosa.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1paulobarbosa/agent-rpg.git",
+    "directory": "apps/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/1paulobarbosa/agent-rpg/issues"
+  },
+  "type": "module",
+  "bin": {
+    "agent-rpg": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.11"
+  },
+  "keywords": [
+    "claude-code",
+    "antigravity",
+    "ai-agents",
+    "pixel-art",
+    "rpg",
+    "idle-game",
+    "cli"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "prepack": "node scripts/build.mjs",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "@agent-rpg/watcher": "workspace:*",
+    "esbuild": "^0.28.2"
+  }
+}
