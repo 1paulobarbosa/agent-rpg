@@ -13,7 +13,7 @@
   },
   "type": "module",
   "bin": {
-    "agent-rpg": "./dist/cli.js"
+    "agent-rpg": "dist/cli.js"
   },
   "files": [
     "dist",
